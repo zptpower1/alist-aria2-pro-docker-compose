@@ -27,10 +27,10 @@ services:
     container_name: aria2-pro
     image: registry.dockermirror.com/p3terx/aria2-pro:latest
     environment:
-      - PUID=0
-      - PGID=0
+      - PUID=65534
+      - PGID=65534
       - UMASK_SET=022
-      - RPC_SECRET=REPLACE_WITH_YOUR_OWN_ARIA2_RPC_SECRET # Please set your own RPC secret.
+      - RPC_SECRET=P3TERX # Please set your own RPC secret.
       - RPC_PORT=6800
       - LISTEN_PORT=6888
       - DISK_CACHE=64M
@@ -42,6 +42,11 @@ services:
       - ${PWD}/aria2/config:/config       # Aria2 Config
       - /Downloads:/downloads # Aria2 Default Download Path
       - ${PWD}/aria2/data:/opt/alist/data # Aria2 Data folder
+    # If you use host network mode, then no port mapping is required.
+    # This is the easiest way to use IPv6 networks.
+    # network_mode: host
+    networks:
+      - alistbridge
     ports:
       - "6800:6800"
       - "6888:6888"
@@ -51,16 +56,17 @@ services:
       driver: json-file
       options:
         max-size: 1m
-    networks:
-      - alistbridge
+    
 
   AriaNg:
     image: registry.dockermirror.com/p3terx/ariang:latest
     container_name: aria-ng
-    environment:
-      - PUID=0
-      - PGID=0
+    # environment:
+    #  - PUID=0
+    #  - PGID=0
     command: --port 6880 --ipv6
+    networks:
+      - alistbridge
     ports:
       - "6880:6880"
     restart: unless-stopped
@@ -68,8 +74,6 @@ services:
       driver: json-file
       options:
         max-size: 1m
-    networks:
-      - alistbridge
 
   # https://hub.docker.com/r/superng6/qbittorrentee
   qbittorrent:
@@ -84,14 +88,14 @@ services:
       - ${PWD}/qbittorrent/config:/config       # config
       - /Downloads:/downloads # Downloads
       - ${PWD}/qbittorrent/data:/opt/alist/data # Data
+    networks:
+      - alistbridge
     ports:
       - 8181:8080
       - 6881:6881
       - 6881:6881/udp
     restart: unless-stopped
-    networks:
-      - alistbridge
-
+    
 networks:
   alistbridge:
     driver: bridge
