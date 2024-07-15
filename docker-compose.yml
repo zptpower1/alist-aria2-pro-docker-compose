@@ -25,7 +25,7 @@ services:
   # Aria2-pro-docker official guide: https://github.com/P3TERX/Aria2-Pro-Docker/blob/master/docker-compose.yml
   Aria2-Pro:
     container_name: aria2-pro
-    image: p3terx/aria2-pro
+    image: p3terx/aria2-pro:latest
     environment:
       - PUID=0
       - PGID=0
