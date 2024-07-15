@@ -10,13 +10,15 @@ services:
     environment:
       - PUID=0 # Find your own user PUID and group PGID. https://docs.linuxserver.io/general/understanding-puid-and-pgid
       - PGID=0 # When using volumes (-v flags) permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user PUID and group PGID.
+      - UMASK=022
+      - TZ=Asia/Shanghai
       - Qbittorrent_ADDRESS=qbittorrentee
       - Qbittorrent_PORT=8181
     volumes:
-      - ${PWD}/alist:/opt/alist/data
+      - ${PWD}/alist/data:/opt/alist/data
     ports:
       - 5244:5244 
-    restart: always
+    restart: unless-stopped
     networks:
       - alistbridge
 
@@ -38,7 +40,7 @@ services:
       - TZ=Asia/Shanghai
     volumes:
       - ${PWD}/aria2/config:/config       # Aria2 Config
-      - ${PWD}/aria2/downloads:/downloads # Aria2 Default Download Path
+      - /Downloads:/downloads # Aria2 Default Download Path
       - ${PWD}/aria2/data:/opt/alist/data # Aria2 Data folder
     ports:
       - "6800:6800"
@@ -80,7 +82,7 @@ services:
       - WEBUIPORT=8181
     volumes:
       - ${PWD}/qbittorrent/config:/config       # config
-      - ${PWD}/qbittorrent/downloads:/downloads # Downloads
+      - /Downloads:/downloads # Downloads
       - ${PWD}/qbittorrent/data:/opt/alist/data # Data
     ports:
       - 8181:8181
