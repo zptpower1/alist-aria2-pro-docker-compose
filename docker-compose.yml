@@ -79,13 +79,13 @@ services:
       - PUID=0
       - PGID=0
       - TZ=Asia/Shanghai
-      - WEBUIPORT=8181
+      - WEBUIPORT=8080
     volumes:
       - ${PWD}/qbittorrent/config:/config       # config
       - /Downloads:/downloads # Downloads
       - ${PWD}/qbittorrent/data:/opt/alist/data # Data
     ports:
-      - 8181:8181
+      - 8181:8080
       - 6881:6881
       - 6881:6881/udp
     restart: unless-stopped
