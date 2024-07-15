@@ -15,7 +15,8 @@ services:
       - Qbittorrent_ADDRESS=qbittorrentee
       - Qbittorrent_PORT=8181
     volumes:
-      - ${PWD}/alist/data:/opt/alist/data
+    #  - ${PWD}/alist/data:/opt/alist/data
+       - /Container/alist/data:/opt/alist/data
     ports:
       - 5244:5244 
     restart: unless-stopped
@@ -39,9 +40,9 @@ services:
       - CUSTOM_TRACKER_URL=
       - TZ=Asia/Shanghai
     volumes:
-      - ${PWD}/aria2/config:/config       # Aria2 Config
+      - /Container/aria2/config:/config       # Aria2 Config
       - /Downloads:/downloads # Aria2 Default Download Path
-      - ${PWD}/aria2/data:/opt/alist/data # Aria2 Data folder
+      - /Container/aria2/data:/opt/alist/data # Aria2 Data folder
     # If you use host network mode, then no port mapping is required.
     # This is the easiest way to use IPv6 networks.
     network_mode: host
@@ -85,9 +86,9 @@ services:
       - TZ=Asia/Shanghai
       - WEBUIPORT=8181
     volumes:
-      - ${PWD}/qbittorrent/config:/config       # config
+      - /Container/qbittorrent/config:/config       # config
       - /Downloads:/downloads # Downloads
-      - ${PWD}/qbittorrent/data:/opt/alist/data # Data
+      - /Container/qbittorrent/data:/opt/alist/data # Data
     networks:
       - alistbridge
     ports:
