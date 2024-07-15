@@ -44,13 +44,13 @@ services:
       - ${PWD}/aria2/data:/opt/alist/data # Aria2 Data folder
     # If you use host network mode, then no port mapping is required.
     # This is the easiest way to use IPv6 networks.
-    # network_mode: host
-    networks:
-      - alistbridge
-    ports:
-      - "6800:6800"
-      - "6888:6888"
-      - "6888:6888/udp"
+    network_mode: host
+    # networks:
+    #   - alistbridge
+    # ports:
+    #   - "6800:6800"
+    #   - "6888:6888"
+    #   - "6888:6888/udp"
     restart: unless-stopped
     logging:
       driver: json-file
