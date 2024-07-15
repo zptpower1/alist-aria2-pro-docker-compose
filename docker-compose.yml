@@ -27,8 +27,8 @@ services:
     container_name: aria2-pro
     image: registry.dockermirror.com/p3terx/aria2-pro:latest
     environment:
-      - PUID=65534
-      - PGID=65534
+      - PUID=0
+      - PGID=0
       - UMASK_SET=022
       - RPC_SECRET=P3TERX # Please set your own RPC secret.
       - RPC_PORT=6800
