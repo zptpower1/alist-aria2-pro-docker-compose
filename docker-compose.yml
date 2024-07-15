@@ -83,7 +83,7 @@ services:
       - PUID=0
       - PGID=0
       - TZ=Asia/Shanghai
-      - WEBUIPORT=8080
+      - WEBUIPORT=8181
     volumes:
       - ${PWD}/qbittorrent/config:/config       # config
       - /Downloads:/downloads # Downloads
@@ -91,7 +91,7 @@ services:
     networks:
       - alistbridge
     ports:
-      - 8181:8080
+      - 8181:8181
       - 6881:6881
       - 6881:6881/udp
     restart: unless-stopped
