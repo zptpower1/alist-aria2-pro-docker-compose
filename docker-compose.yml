@@ -56,7 +56,7 @@ services:
 
   AriaNg:
     image: registry.dockermirror.com/p3terx/ariang:latest
-    container_name: ariang
+    container_name: aria-ng
     environment:
       - PUID=0
       - PGID=0
