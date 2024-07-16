@@ -90,7 +90,7 @@ services:
     volumes:
       - /share/Container/qbittorrent/config:/config       # config
       - /share/Downloads:/downloads # Downloads
-      - /share/Container/qbittorrent/data:/opt/alist/data # Data
+    #  - /share/Container/qbittorrent/data:/opt/alist/data # Data
     networks:
       - alistbridge
     ports:
