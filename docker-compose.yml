@@ -15,6 +15,7 @@ services:
       - TZ=Asia/Shanghai
       - Qbittorrent_ADDRESS=qbittorrentee
       - Qbittorrent_PORT=8181
+      - VIRTUAL_HOST=alist.gjt.27ke.cn
     volumes:
     #  - ${PWD}/alist/data:/opt/alist/data
        - /share/Container/alist/data:/opt/alist/data
@@ -88,6 +89,7 @@ services:
       - PGID=0
       - TZ=Asia/Shanghai
       - WEBUIPORT=8181
+      - VIRTUAL_HOST=qbittorrentee.gjt.27ke.cn
     volumes:
       - /share/Container/qbittorrent/config:/config       # config
       - /share/Downloads:/downloads # Downloads
