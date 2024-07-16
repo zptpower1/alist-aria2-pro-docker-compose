@@ -21,8 +21,9 @@ services:
     ports:
       - 5244:5244 
     restart: unless-stopped
+    network_mode: bridge
     networks:
-      - alistbridge
+      - docker0
 
   # aria2的部分由https://github.com/zptpower1/Aria2-Pro-Docker/blob/master/docker-compose.yml 单独配置
   # # Aria2-pro-docker official guide: https://github.com/P3TERX/Aria2-Pro-Docker/blob/master/docker-compose.yml
@@ -91,14 +92,15 @@ services:
       - /share/Container/qbittorrent/config:/config       # config
       - /share/Downloads:/downloads # Downloads
     #  - /share/Container/qbittorrent/data:/opt/alist/data # Data
+    network_mode: bridge
     networks:
-      - alistbridge
+      - docker0
     ports:
       - 8181:8181
       - 6881:6881
       - 6881:6881/udp
     restart: unless-stopped
     
-networks:
-  alistbridge:
-    driver: bridge
+# networks:
+#   alistbridge:
+#     driver: bridge
